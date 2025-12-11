@@ -18,7 +18,7 @@ function verificationConnexion($login,$mdp){
         $_SESSION['role'] = 'eleve';
     }
     else{
-        $req = $bdd->prepare('SELECT * FROM tb_admin WHERE login = ? AND mdp = ?');
+    $req = $bdd->prepare('SELECT * FROM tb_admin WHERE login = ? AND mdp = ?');
     $req->execute([$login, $mdp]);
     $resultat = $req->fetch();
     if($resultat > 0)
@@ -61,5 +61,29 @@ function afficherelevesclasse($idclasse){
     $req->execute([$idclasse]);
     $eleve = $req->fetchAll();
     return $eleve;
+}
+
+function afficherEleves(){
+    require "connexion.php";
+    $req = $bdd->prepare('select nomeleve, prenomeleve, loginEleve from tb_eleve');
+    $req->execute();
+    $eleve = $req->fetchAll();
+    return $eleve;
+}
+
+function afficherEnseignant(){
+    require "connexion.php";
+    $req = $bdd->prepare('select nom, prenom, identifiant from tb_enseignant');
+    $req->execute();
+    $enseignant = $req->fetchAll();
+    return $enseignant;
+}
+
+function afficherElevesEnseignant(){
+    require "connexion.php";
+    $req = $bdd->prepare('select nom,prenom,identifiant, nomeleve,prenomeleve,logineleve from tb_enseignant inner join tb_enseigner e on e.iduser = tb_enseignant.iduser inner join tb_classe c on c.idClasse = e.idclasse inner join tb_eleve on idclasse = idclasseEleve');
+    $req->execute();
+    $enseignantsEtEleves = $req->fetchAll();
+    return $enseignantsEtEleves;
 }
 ?>

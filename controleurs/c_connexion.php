@@ -3,7 +3,7 @@ if(!isset($_REQUEST['action'])) {
     $action = "affichage" ;
 }
 else {
-    $action = $_REQUEST['uc'] ;
+    $action = $_REQUEST['action'] ;
 }
 switch($action){
     case 'affichage' : {
