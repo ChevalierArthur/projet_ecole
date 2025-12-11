@@ -11,6 +11,9 @@
 <?php if(isset($_SESSION['id'])) { ?>
 <body><div class="container">
     <header>
+        <?php if($_SESSION['role'] == 'admin') { ?>
+            <a href="index.php?uc=classe">Classe</a>
+            <?php } ?>
             <form action="index.php?uc=deconnexion" method="post">
                 <input class="btn-deconnexion" type="submit" value="Se déconnecter">
             </form>

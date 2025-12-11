@@ -17,7 +17,8 @@
             </form>
             <?php
             if(isset($_SESSION['id'])){
-                echo "vous etes connecté";
+                echo "vous etes connecté ";
+                echo $_SESSION['role'];
             }
             ?>
         </div>
