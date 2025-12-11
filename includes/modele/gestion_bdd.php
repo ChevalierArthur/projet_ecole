@@ -65,7 +65,7 @@ function afficherelevesclasse($idclasse){
 
 function afficherEleves(){
     require "connexion.php";
-    $req = $bdd->prepare('select nomeleve, prenomeleve, loginEleve from tb_eleve');
+    $req = $bdd->prepare('select ideleve, nomeleve, prenomeleve, loginEleve from tb_eleve');
     $req->execute();
     $eleve = $req->fetchAll();
     return $eleve;
@@ -79,11 +79,10 @@ function afficherEnseignant(){
     return $enseignant;
 }
 
-function afficherElevesEnseignant(){
+function supprimerEleves($id){
     require "connexion.php";
-    $req = $bdd->prepare('select nom,prenom,identifiant, nomeleve,prenomeleve,logineleve from tb_enseignant inner join tb_enseigner e on e.iduser = tb_enseignant.iduser inner join tb_classe c on c.idClasse = e.idclasse inner join tb_eleve on idclasse = idclasseEleve');
-    $req->execute();
-    $enseignantsEtEleves = $req->fetchAll();
-    return $enseignantsEtEleves;
+    $req = $bdd->prepare('delete from tb_eleve where ideleve = ?');
+    $req->execute([$id]);
+    return "réussi";
 }
 ?>

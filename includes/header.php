@@ -14,6 +14,7 @@
         <?php if($_SESSION['role'] == 'admin') { ?>
             <a href="index.php?uc=classe">Classe</a>
             <?php } ?>
+            <a href="index.php?uc=gestion&action=afficher">affichage gestion</a>
             <form action="index.php?uc=deconnexion" method="post">
                 <input class="btn-deconnexion" type="submit" value="Se déconnecter">
             </form>
