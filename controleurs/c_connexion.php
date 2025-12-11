@@ -15,7 +15,8 @@ switch($action){
         $login = $_POST['login'];
         $mdp = $_POST['mdp'];
         verificationConnexion($login,$mdp);  
-        ; break ;} 
+        header('Location: index.php');
+        break ;} 
     case 'deconnexion' : {  include "includes/modele/deconnexion.php" ; break ;} 
 }
 ?>
