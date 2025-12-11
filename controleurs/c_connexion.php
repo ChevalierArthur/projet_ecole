@@ -17,6 +17,6 @@ switch($action){
         verificationConnexion($login,$mdp);  
         header('Location: index.php');
         break ;} 
-    case 'deconnexion' : {  include "includes/modele/deconnexion.php" ; break ;} 
+    
 }
 ?>
