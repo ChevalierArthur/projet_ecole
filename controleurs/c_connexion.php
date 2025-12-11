@@ -6,7 +6,16 @@ else {
     $action = $_REQUEST['uc'] ;
 }
 switch($action){
-    case 'connexion' : {  include "c_connexion.php" ; break ;} 
+    case 'affichage' : {
+        include "vues/v_connexion.php" ;
+        break ;
+    }
+    case 'connexion' : 
+        {
+        $login = $_POST['login'];
+        $mdp = $_POST['mdp'];
+        verificationConnexion($login,$mdp);  
+        ; break ;} 
     case 'deconnexion' : {  include "includes/modele/deconnexion.php" ; break ;} 
 }
 ?>

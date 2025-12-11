@@ -1,5 +1,5 @@
 <?php
-if (!isset($_REQUEST['uc'])) {
+if (!isset($_REQUEST['uc']) && !isset($_SESSION['id'])) {
     $uc = "connexion" ;
 }
 else {
