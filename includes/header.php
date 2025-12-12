@@ -8,8 +8,9 @@
     <meta name="author" content="">
     <link rel="stylesheet" href="includes/css/style.css">
 </head>
+<div class="container">
 <?php if(isset($_SESSION['id'])) { ?>
-<body><div class="container">
+<body>
     <header>
         <?php if($_SESSION['role'] == 'admin') { ?>
             <a href="index.php?uc=classe">Classe</a>
@@ -23,6 +24,3 @@
 <?php
 }
 ?>
-<body><div class="container">
-    <header>
-    </header>
