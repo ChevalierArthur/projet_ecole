@@ -8,19 +8,36 @@
     <meta name="author" content="">
     <link rel="stylesheet" href="includes/css/style.css">
 </head>
-<div class="container">
-<?php if(isset($_SESSION['id'])) { ?>
 <body>
-    <header>
-        <?php if($_SESSION['role'] == 'admin') { ?>
-            <a href="index.php?uc=classe">Classe</a>
-            <?php } ?>
-            <a href="index.php?uc=gestion&action=afficher">affichage gestion</a>
+    
+    <?php 
+    if(isset($_SESSION['id'])) { 
+    ?>
+        <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+        
+        <header>
+            <?php 
+            if($_SESSION['role'] == 'admin') { 
+            ?>
+                <a href="index.php?uc=classe">Classes</a>
+            <?php 
+            } 
+            ?>
+            
+            <a href="index.php?uc=gestion&action=afficher">Gestion</a>
+            
             <form action="index.php?uc=deconnexion" method="post">
-                <input class="btn-deconnexion" type="submit" value="Se déconnecter">
+                <input type="submit" value="Déconnexion">
             </form>
-        </div>
-    </header>
-<?php
-}
-?>
+        </header>
+        
+        <script>
+        function toggleSidebar() {
+            document.body.classList.toggle('sidebar-hidden');
+        }
+        </script>
+    <?php 
+    } 
+    ?>
+    
+    <div class="container">

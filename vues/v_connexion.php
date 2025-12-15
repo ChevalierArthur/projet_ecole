@@ -15,12 +15,6 @@
             <input type="password" class="input" id="mdp" name="mdp" required placeholder="Mot de passe"><br><br>
             <input class='btn-principal'type="submit" value="Se connecter"><br><br>
             </form>
-            <?php
-            if(isset($_SESSION['id'])){
-                echo "vous etes connecté ";
-                echo $_SESSION['role'];
-            }
-            ?>
         </div>
 </div>
 </body>
