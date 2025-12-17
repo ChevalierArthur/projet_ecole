@@ -32,26 +32,28 @@ function verificationConnexion($login,$mdp){
 function afficherclasses($idprof){
     require "connexion.php";
     if(!isset($idprof)){
-        $req = $bdd->prepare('SELECT idclasse , libelleClasse FROM tb_classe');
+        $req = $bdd->prepare('SELECT idclasse , libelleClasse, niveaux FROM tb_classe');
         $req->execute();
-        $classe = $req->fetch();
+        $classe = $req->fetchAll();
         $req = $bdd->prepare('SELECT nomeleve , prenomeleve, idclasseeleve FROM tb_eleve');
         $req->execute();
-        $eleve = $req->fetch();
-        $classeinfo = [$classe];
-        $eleveinfo = [$eleve];
+        $eleve = $req->fetchAll();
+
+        $classeinfo = $classe;
+        $eleveinfo = $eleve;
     }
     else
-        {
-        $req = $bdd->prepare('SELECT c.idclasse , libelleClasse FROM tb_classe c inner join tb_enseignant e on e.idclasse = c.idclasse where e.idUser = ?');
-        $req->execute($idprof);
-        $classe = $req->fetch();
+    {
+        $req = $bdd->prepare('SELECT c.idclasse , libelleClasse, niveaux FROM tb_classe c inner join tb_enseigner e on e.idclasse = c.idclasse where e.idUser = ?');
+        $req->execute([$idprof]);
+        $classe = $req->fetchAll();
         $req = $bdd->prepare('SELECT nomeleve , prenomeleve, idclasseeleve FROM tb_eleve where idclasseeleve in (select idclasse from tb_enseigner where iduser = ?)');
-        $req->execute($idprof);
-        $eleve = $req->fetch();
-        $classeinfo = [$classe];
-        $eleveinfo = [$eleve];
-        }
+        $req->execute([$idprof]);
+        $eleve = $req->fetchAll();
+
+        $classeinfo = $classe;
+        $eleveinfo = $eleve;
+    }
     return [$classeinfo, $eleveinfo];
 }
 
@@ -83,6 +85,18 @@ function supprimerEleves($id){
     require "connexion.php";
     $req = $bdd->prepare('delete from tb_eleve where ideleve = ?');
     $req->execute([$id]);
-    return "réussi";
+    return;
+}
+function modifierClasse($idclasse, $libelleClasse){
+    require "connexion.php";
+    $req = $bdd->prepare('update tb_classe set libelleClasse = ? where idclasse = ?');
+    $req->execute([$libelleClasse, $idclasse]);
+    return;
+}
+function supprimerClasse($idclasse){
+    require "connexion.php";
+    $req = $bdd->prepare('delete from tb_classe where idclasse = ?');
+    $req->execute([$idclasse]);
+    return ;
 }
 ?>

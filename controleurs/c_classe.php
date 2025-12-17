@@ -20,5 +20,34 @@ switch($action){
         include "vues/v_classe.php" ;
         break ;
     }
+    case 'affichage-enseignant' : {
+        [$classe,$eleve] = afficherclassesparprof($_SESSION['id']);
+        include "vues/v_classe.php" ;
+        break ;
+    }
+    case 'modif' : {
+        if($_SESSION['role'] == 'enseignant'){
+            [$classe,$eleve] = afficherclasses($_SESSION['id']);
+        }
+        else{
+            [$classe,$eleve] = afficherclasses(null);
+        }
+
+        include "vues/v_classe.php" ;
+        break ;
+    }
+    case 'modifierClasse' : {
+        $idclasse = $_REQUEST['id'];
+        $libelleClasse = $_POST['libelleClasse'];
+        modifierClasse($idclasse, $libelleClasse);
+        header('Location: index.php?uc=classe');
+        break ;
+    }
+    case 'supprimer' : {
+        $idclasse = $_REQUEST['id'];
+        supprimerClasse($idclasse);
+        header('Location: index.php?uc=classe');
+        break ;
+    }
 }
 ?>

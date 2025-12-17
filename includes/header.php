@@ -17,14 +17,12 @@
         
         <header>
             <?php 
-            if($_SESSION['role'] == 'admin') { 
+            if($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'enseignant') { 
             ?>
                 <a href="index.php?uc=classe">Classes</a>
             <?php 
             } 
             ?>
-            
-            <a href="index.php?uc=gestion&action=afficher">Gestion</a>
             
             <form action="index.php?uc=deconnexion" method="post">
                 <input type="submit" value="Déconnexion">

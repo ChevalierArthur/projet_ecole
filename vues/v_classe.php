@@ -7,24 +7,67 @@
     <link rel="stylesheet" href="includes/css/style.css">
 </head>
 <body>
-    
+    <?php if($_SESSION['role'] == 'admin') : ?>
+    <!-- Bouton Ajouter -->
+    <button onclick="showForm()">Ajouter une classe</button>
+
+    <!-- Formulaire alerte -->
+    <div id="alertForm" style="display:none; position:fixed; top:30%; left:50%; transform:translate(-50%, -50%);
+        background:white; border:1px solid #ccc; padding:20px; z-index:1000; box-shadow:0 0 10px rgba(0,0,0,0.3);">
+        <h3>Ajouter une classe</h3>
+        <form action="index.php?uc=classe&action=ajouter" method="post">
+            <input type="text" name="libelleClasse" placeholder="Nom de la classe" required><br><br>
+            <input type="text" name="niveaux" placeholder="Niveaux" required><br><br>
+            <input type="submit" value="Ajouter">
+            <button type="button" onclick="hideForm()">Annuler</button>
+        </form>
+    </div>
+
+    <!-- Fond sombre derrière la popup -->
+    <div id="overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; 
+        background:rgba(0,0,0,0.5); z-index:500;" onclick="hideForm()"></div>
+
+    <script>
+        function showForm(){
+            document.getElementById('alertForm').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+        function hideForm(){
+            document.getElementById('alertForm').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
+<?php endif; ?>
     <?php 
     foreach($classe as $classeinfo){ 
         $count = 0;
+        
         foreach($eleve as $eleveinfo){ 
             if($eleveinfo['idclasseeleve'] == $classeinfo['idclasse']){
                 $count++;
             }
         }
-    ?>
-    
-        <div class="classe-card" onclick="window.location='index.php?uc=gestion&action=afficher&id=<?php echo $classeinfo['idclasse']; ?>'">
+        if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'modif' && isset($_REQUEST['id']) && $_REQUEST['id'] == $classeinfo['idclasse']) 
+        {
+            echo '<div class="classe-card">
+                    <form action="index.php?uc=classe&action=modifierClasse&id='.$classeinfo['idclasse'].'" method="post">
+                        <label for="libelleClasse">Libellé de la classe :</label>
+                        <input type="text" id="libelleClasse" name="libelleClasse" value="'.$classeinfo['libelleClasse'].'" required>
+                        <input type="submit" value="Enregistrer">
+                    </form>
+                  </div>';
+        }
+        else{?>
+            <div class="classe-card" onclick="window.location='index.php?uc=gestion&action=afficher&id=<?php echo $classeinfo['idclasse']; ?>'">
             
             <div class="card-header">
                 <h2><?php echo $classeinfo['libelleClasse']; ?></h2>
                 <span class="eleve-count"><?php echo $count; ?> élève<?php if($count > 1) { echo 's'; } ?></span>
-            </div>
+            </div><?php
             
+        }
+    ?>
+            <div class="card-content">Niveaux : <?php echo $classeinfo['niveaux']; ?></div>
             <div class="card-content">
                 <div class="section-title">Liste des élèves :</div>
                 
@@ -47,12 +90,17 @@
                 ?>
                 
                 <div class="card-actions">
-                    <button class="btn-modifier" onclick="window.location='index.php?uc=classe&action=modifeleve&id=<?php echo $classeinfo['idclasse']; ?>'; event.stopPropagation();">
+                    <?php if($_SESSION['role'] == 'admin' && !isset($_REQUEST['action'])) { ?>
+                    <button class="btn-modifier" onclick="window.location='index.php?uc=classe&action=modif&id=<?php echo $classeinfo['idclasse']; ?>'; event.stopPropagation();">
                         Modifier
                     </button>
-                    <button class="btn-supprimer" onclick="if(confirm('Supprimer cette classe ?')){ window.location='index.php?uc=classe&action=supprimer&id=<?php echo $classeinfo['idclasse']; ?>'; } event.stopPropagation();">
+                    <?php if($count == 0) { ?>
+                        
+                    <button class="btn-supprimer" onclick="if(confirm('Supprimer cette classe ?')){ window.location='index.php?uc=classe&action=supprimer&id=<?php echo $classeinfo['idclasse']; ?>'; }">
                         Supprimer
                     </button>
+                    <?php } ?>
+                    <?php }?>
                 </div>
             </div>
             

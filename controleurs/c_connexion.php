@@ -14,8 +14,13 @@ switch($action){
         {
         $login = $_POST['login'];
         $mdp = $_POST['mdp'];
-        verificationConnexion($login,$mdp);  
+        verificationConnexion($login,$mdp); 
+        if(($_SESSION['role'] == 'admin') || ($_SESSION['role'] == 'enseignant') ){
+        header('Location: index.php?uc=classe');
+        }
+        else{
         header('Location: index.php');
+    }
         break ;} 
     
 }
