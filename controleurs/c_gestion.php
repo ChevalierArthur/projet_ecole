@@ -11,7 +11,12 @@ switch($action){
         include "vues/v_gestionCompte.php" ;
         break ;
     }
-
+    
+    case 'modifier' : {
+        $donnees = afficherEleves();
+        include "vues/v_gestionCompte.php" ;
+        break ;
+    }
     case 'supprimer' :{
         $resultat = supprimerEleves($_REQUEST['id']);
         $donnees = afficherEleves();
