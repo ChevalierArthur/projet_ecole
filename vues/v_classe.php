@@ -7,13 +7,11 @@
     <link rel="stylesheet" href="includes/css/style.css">
 </head>
 <body>
-    <?php if($_SESSION['role'] == 'admin') : ?>
-    <!-- Bouton Ajouter -->
+    <?php if($_SESSION['role'] == 'admin') { ?>
     <button onclick="showForm()">Ajouter une classe</button>
 
-    <!-- Formulaire alerte -->
     <div id="alertForm" style="display:none; position:fixed; top:30%; left:50%; transform:translate(-50%, -50%);
-        background:white; border:1px solid #ccc; padding:20px; z-index:1000; box-shadow:0 0 10px rgba(0,0,0,0.3);">
+          padding:20px; z-index:1000; ">
         <h3>Ajouter une classe</h3>
         <form action="index.php?uc=classe&action=ajouter" method="post">
             <input type="text" name="libelleClasse" placeholder="Nom de la classe" required><br><br>
@@ -23,7 +21,6 @@
         </form>
     </div>
 
-    <!-- Fond sombre derrière la popup -->
     <div id="overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; 
         background:rgba(0,0,0,0.5); z-index:500;" onclick="hideForm()"></div>
 
@@ -37,7 +34,7 @@
             document.getElementById('overlay').style.display = 'none';
         }
     </script>
-<?php endif; ?>
+<?php } ?>
     <?php 
     foreach($classe as $classeinfo){ 
         $count = 0;

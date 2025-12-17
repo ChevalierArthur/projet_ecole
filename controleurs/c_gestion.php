@@ -13,7 +13,8 @@ switch($action){
     }
     
     case 'modifier' : {
-        $donnees = afficherEleves();
+        $id = $_POST['id'];
+        $donnees = afficherEleves($id);
         include "vues/v_gestionCompte.php" ;
         break ;
     }

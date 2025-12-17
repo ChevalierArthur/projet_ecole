@@ -27,6 +27,7 @@ foreach ($donnees as $eleve) {
             <td><input type="text" name="nomeleve" value="' . $nom . '"></td>
             <td><input type="text" name="prenomeleve" value="' . $prenom . '"></td>
             <td><input type="text" name="logineleve" value="' . $login . '"></td>
+            
             <td><input type="submit" value="Valider"></td>
         </form>';
 

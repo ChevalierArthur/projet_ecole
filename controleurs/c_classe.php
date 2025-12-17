@@ -20,11 +20,6 @@ switch($action){
         include "vues/v_classe.php" ;
         break ;
     }
-    case 'affichage-enseignant' : {
-        [$classe,$eleve] = afficherclassesparprof($_SESSION['id']);
-        include "vues/v_classe.php" ;
-        break ;
-    }
     case 'modif' : {
         if($_SESSION['role'] == 'enseignant'){
             [$classe,$eleve] = afficherclasses($_SESSION['id']);

@@ -99,4 +99,11 @@ function supprimerClasse($idclasse){
     $req->execute([$idclasse]);
     return ;
 }
+function getEleveByclasse($idclasse){
+    require "connexion.php";
+    $req = $bdd->prepare('select ideleve, nomeleve, prenomeleve from tb_eleve where idclasseeleve = ?');
+    $req->execute([$idclasse]);
+    $eleve = $req->fetchAll();
+    return $eleve;
+}
 ?>
