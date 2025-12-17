@@ -106,4 +106,10 @@ function getEleveByclasse($idclasse){
     $eleve = $req->fetchAll();
     return $eleve;
 }
+
+function modifierEleve($id,$nom,$prenom,$logineleve){
+    require "connexion.php";
+    $req = $bdd->prepare('update tb_eleve set nomeleve = ?, prenomeleve = ?, loginEleve = ? where idEleve = ?');
+    $req->execute([$nom,$prenom,$logineleve,$id]);
+}
 ?>
