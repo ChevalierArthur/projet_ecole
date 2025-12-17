@@ -1,4 +1,7 @@
 <?php
+
+// en réalité est le controlleur d'eleves mais pas envie de le renommer 
+
 if(!isset($_REQUEST['action'])) {
     $action = "afficher" ;
 }

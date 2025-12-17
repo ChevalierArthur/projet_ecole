@@ -10,5 +10,6 @@ switch($uc){
     case 'deconnexion' : {  include "c_deconnexion.php" ; break ;} 
     case 'classe' : {  include "c_classe.php" ; break ;}
     case 'gestion': {include "c_gestion.php"; break;}
+    case 'Enseignant' :{include "c_enseignant.php"; break;}
 }
 ?>

@@ -75,7 +75,7 @@ function afficherEleves($id){
 
 function afficherEnseignant(){
     require "connexion.php";
-    $req = $bdd->prepare('select nom, prenom, identifiant from tb_enseignant');
+    $req = $bdd->prepare('select idUser, nom, prenom, identifiant from tb_enseignant');
     $req->execute();
     $enseignant = $req->fetchAll();
     return $enseignant;
@@ -112,4 +112,19 @@ function modifierEleve($id,$nom,$prenom,$logineleve){
     $req = $bdd->prepare('update tb_eleve set nomeleve = ?, prenomeleve = ?, loginEleve = ? where idEleve = ?');
     $req->execute([$nom,$prenom,$logineleve,$id]);
 }
+
+function modifierEnseignant($idenseignant, $nom, $prenom, $loginenseignant){
+    require "connexion.php";
+    $req = $bdd->prepare('UPDATE tb_enseignant SET nom = ?, prenom = ?, identifiant = ? WHERE idUser = ?');
+    $req->execute([$nom, $prenom, $loginenseignant, $idenseignant]);
+}
+
+function supprimerEnseignant($idenseignant){
+    require "connexion.php";
+    $req = $bdd->prepare('DELETE FROM tb_enseignant WHERE idUser = ?');
+    $req->execute([$idenseignant]);
+    return;
+}
+
+
 ?>

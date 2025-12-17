@@ -23,6 +23,14 @@
             <?php 
             } 
             ?>
+            <?php 
+            if($_SESSION['role'] == 'admin') { 
+            ?>
+                <a href="index.php?uc=Enseignant">Enseignant</a>
+            <?php 
+            } 
+            ?>
+
             
             <form action="index.php?uc=deconnexion" method="post">
                 <input type="submit" value="Déconnexion">
