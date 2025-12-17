@@ -18,7 +18,7 @@
         }
     ?>
     
-        <div class="classe-card" onclick="window.location='index.php?uc=classe&action=modifeleve&id=<?php echo $classeinfo['idclasse']; ?>'">
+        <div class="classe-card" onclick="window.location='index.php?uc=gestion&action=afficher&id=<?php echo $classeinfo['idclasse']; ?>'">
             
             <div class="card-header">
                 <h2><?php echo $classeinfo['libelleClasse']; ?></h2>

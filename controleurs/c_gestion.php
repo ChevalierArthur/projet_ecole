@@ -1,13 +1,13 @@
 <?php
 if(!isset($_REQUEST['action'])) {
-    $action = "affichage" ;
+    $action = "afficher" ;
 }
 else {
     $action = $_REQUEST['action'] ;
 }
 switch($action){
     case 'afficher' : {
-        $donnees = afficherEleves();
+        $donnees = afficherEleves($_REQUEST['id']);
         include "vues/v_gestionCompte.php" ;
         break ;
     }

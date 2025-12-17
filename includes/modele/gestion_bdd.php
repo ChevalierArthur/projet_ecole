@@ -63,10 +63,10 @@ function afficherelevesclasse($idclasse){
     return $eleve;
 }
 
-function afficherEleves(){
+function afficherEleves($id){
     require "connexion.php";
-    $req = $bdd->prepare('select ideleve, nomeleve, prenomeleve, loginEleve from tb_eleve');
-    $req->execute();
+    $req = $bdd->prepare('select ideleve, nomeleve, prenomeleve, loginEleve from tb_eleve where idclasseeleve = ?');
+    $req->execute([$id]);
     $eleve = $req->fetchAll();
     return $eleve;
 }
