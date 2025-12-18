@@ -125,6 +125,11 @@ function supprimerEnseignant($idenseignant){
     $req->execute([$idenseignant]);
     return;
 }
-
+function ajouterClasse($libelleClasse, $niveaux){
+    require "connexion.php";
+    $req = $bdd->prepare('INSERT INTO tb_classe (libelleClasse, niveaux) VALUES (?, ?)');
+    $req->execute([$libelleClasse, $niveaux]);
+    return ;
+}
 
 ?>

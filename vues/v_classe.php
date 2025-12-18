@@ -12,7 +12,6 @@
 
     <div id="alertForm" style="display:none; position:fixed; top:30%; left:50%; transform:translate(-50%, -50%);
         padding:20px; z-index:1000; ">
-        <h3>Ajouter une classe</h3>
         <form action="index.php?uc=classe&action=ajouter" method="post">
             <input type="text" name="libelleClasse" placeholder="Nom de la classe" required><br><br>
             <input type="text" name="niveaux" placeholder="Niveaux" required><br><br>
@@ -47,17 +46,16 @@
         if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'modif' && isset($_REQUEST['id']) && $_REQUEST['id'] == $classeinfo['idclasse']) 
         {
             echo '<div class="classe-card">
-                    <form action="index.php?uc=classe&action=modifierClasse&id='.$classeinfo['idclasse'].'" method="post">
+                    <form style="display:contents;" action="index.php?uc=classe&action=modifierClasse&id='.$classeinfo['idclasse'].'" method="post">
                         <label for="libelleClasse">Libellé de la classe :</label>
                         <input type="text" id="libelleClasse" name="libelleClasse" value="'.$classeinfo['libelleClasse'].'" required>
                         <input type="submit" value="Enregistrer">
-                    </form>
-                </div>';
+                    </form>';
         }
         else{?>
-            <div class="classe-card" onclick="window.location='index.php?uc=gestion&action=afficher&id=<?php echo $classeinfo['idclasse']; ?>'">
+            <div class="classe-card">
             
-            <div class="card-header">
+            <div class="card-header" onclick="window.location='index.php?uc=gestion&action=afficher&id=<?php echo $classeinfo['idclasse']; ?>';">
                 <h2><?php echo $classeinfo['libelleClasse']; ?></h2>
                 <span class="eleve-count"><?php echo $count; ?> élève<?php if($count > 1) { echo 's'; } ?></span>
             </div><?php
@@ -87,7 +85,7 @@
                 ?>
                 
                 <div class="card-actions">
-                    <?php if($_SESSION['role'] == 'admin' && !isset($_REQUEST['action'])) { ?>
+                    <?php if($_SESSION['role']) { ?>
                     <button class="btn-modifier" onclick="window.location='index.php?uc=classe&action=modif&id=<?php echo $classeinfo['idclasse']; ?>'; event.stopPropagation();">
                         Modifier
                     </button>

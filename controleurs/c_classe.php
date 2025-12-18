@@ -44,5 +44,12 @@ switch($action){
         header('Location: index.php?uc=classe');
         break ;
     }
+    case 'ajouter' : {
+        $libelleClasse = $_POST['libelleClasse'];
+        $niveaux = $_POST['niveaux'];
+        ajouterClasse($libelleClasse, $niveaux);
+        header('Location: index.php?uc=classe');
+        break ;
+    }
 }
 ?>
