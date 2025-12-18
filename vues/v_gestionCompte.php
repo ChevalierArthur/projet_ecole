@@ -1,6 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classe</title>
+    <link rel="stylesheet" href="includes/css/style.css">
+</head>
+<body>
+<?php if ($_SESSION['role'] == 'admin') { ?>
+    <button onclick="showEleveForm()">Ajouter un élève</button>
+
+    <div id="eleveForm" style="display:none; position:fixed; top:30%; left:50%;
+        transform:translate(-50%, -50%); padding:20px; z-index:1000;">
+        
+        <h3>Ajouter un élève</h3>
+
+        <form action="index.php?uc=eleve&action=ajouter" method="post">
+            <input type="text" name="nomeleve" placeholder="Nom" required><br><br>
+            <input type="text" name="prenomeleve" placeholder="Prénom" required><br><br>
+            <input type="text" name="loginEleve" placeholder="Login" required><br><br>
+            <input type="password" name="mdpEleve" placeholder="Mot de passe" required><br><br>
+            <input type="hidden" name="idclasse" value="<?= $_REQUEST['id'] ?>">
+            <input type="submit" value="Ajouter">
+            <button type="button" onclick="hideEleveForm()">Annuler</button>
+        </form>
+    </div>
+
+    <div id="overlayEleve" style="display:none; position:fixed; top:0; left:0;
+        width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:500;"
+        onclick="hideEleveForm()"></div>
+
+    <script>
+        function showEleveForm(){
+            document.getElementById('eleveForm').style.display = 'block';
+            document.getElementById('overlayEleve').style.display = 'block';
+        }
+        function hideEleveForm(){
+            document.getElementById('eleveForm').style.display = 'none';
+            document.getElementById('overlayEleve').style.display = 'none';
+        }
+    </script>
+<?php } ?>
+
+
 <table>
 <?php
-
 foreach ($donnees as $eleve) {
 
     if (!isset($eleve['ideleve'])) {
@@ -59,4 +103,5 @@ foreach ($donnees as $eleve) {
 }
 
 ?>
+</body>
 </table>
