@@ -44,5 +44,16 @@ switch($action){
         }
         break;
     }
+    case 'ajouter':{ 
+        $nom = $_POST['nomeleve']; 
+        $prenom = $_POST['prenomeleve']; 
+        $login = $_POST['loginEleve']; 
+        $mdp = $_POST['mdpEleve']; $idclasse = 
+        $_POST['idclasse']; 
+        ajouterEleve($nom, $prenom, $login, $mdp, $idclasse); 
+        $donnees = afficherEleves($idclasse); 
+        require 'vues/v_gestionCompte.php';
+        break;
+    }
 }
 ?>
