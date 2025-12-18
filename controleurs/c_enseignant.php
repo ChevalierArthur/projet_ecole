@@ -15,8 +15,8 @@ switch($action) {
 
     case 'modifier': {
         $idenseignant = $_REQUEST['idenseignant'];
-        $donnees = afficherEnseignant();
-        include "vues/v_Enseignant.php";
+        [$enseignant, $classe] = afficherunEnseignant($idenseignant);
+        include "vues/v_mod_Enseignant.php";
         break;
     }
 

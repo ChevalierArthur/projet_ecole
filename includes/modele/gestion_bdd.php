@@ -140,5 +140,17 @@ function ajouterEleve($nom, $prenom, $login, $mdp, $idclasse){
     );
     $req->execute([$nom, $prenom, $login, $mdp, $idclasse]);
 }
-
+function afficherunEnseignant($idenseignant){
+    require "connexion.php";
+    $req = $bdd->prepare('SELECT idUser, nom, prenom, identifiant FROM tb_enseignant WHERE idUser = ?');
+    $req->execute([$idenseignant]);
+    $enseignant = $req->fetchAll();
+    $req = $bdd->prepare('SELECT tb_classe.idclasse,libelleclasse from tb_classe inner join tb_enseigner on tb_enseigner.idclasse = tb_classe.idclasse where idUser = ?');
+    $req->execute([$idenseignant]);
+    $classe = $req->fetchAll();
+    $req = $bdd->prepare('select tb_matiere.idmat, libellemat from tb_matiere inner join tb_enseigner on tb_enseigner.idmat= tb_matiere.idmat where idUser = ?');
+    $req->execute([$idenseignant]);
+    $matiere = $req->fetchAll();
+    return [$enseignant, $classe, $matiere];
+}
 ?>
