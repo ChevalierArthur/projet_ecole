@@ -132,4 +132,13 @@ function ajouterClasse($libelleClasse, $niveaux){
     return ;
 }
 
+function ajouterEleve($nom, $prenom, $login, $mdp, $idclasse){
+    require "connexion.php";
+    $req = $bdd->prepare(
+        'INSERT INTO tb_eleve (nomeleve, prenomeleve, loginEleve, mdpEleve, idclasseeleve)
+        VALUES (?, ?, ?, ?, ?)'
+    );
+    $req->execute([$nom, $prenom, $login, $mdp, $idclasse]);
+}
+
 ?>
