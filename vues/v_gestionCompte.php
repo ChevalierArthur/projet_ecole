@@ -8,7 +8,7 @@
 </head>
 <body>
 <?php if ($_SESSION['role'] == 'admin') { ?>
-    <button onclick="showEleveForm()">Ajouter un élève</button>
+    <button class="btn-creer" style="margin: 20px auto; display: block;" onclick="showEleveForm()">Ajouter un élève</button>
 
     <div id="eleveForm" style="display:none; position:fixed; top:30%; left:50%;
         transform:translate(-50%, -50%); padding:20px; z-index:1000;">

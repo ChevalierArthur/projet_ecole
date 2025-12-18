@@ -85,7 +85,7 @@
                 ?>
                 
                 <div class="card-actions">
-                    <?php if($_SESSION['role']) { ?>
+                    <?php if($_SESSION['role'] == 'admin') { ?>
                     <button class="btn-modifier" onclick="window.location='index.php?uc=classe&action=modif&id=<?php echo $classeinfo['idclasse']; ?>'; event.stopPropagation();">
                         Modifier
                     </button>
