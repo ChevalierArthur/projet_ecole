@@ -15,7 +15,7 @@
         
         <h3>Ajouter un élève</h3>
 
-        <form action="index.php?uc=eleve&action=ajouter" method="post">
+        <form action="index.php?uc=gestion&action=ajouter" method="post">
             <input type="text" name="nomeleve" placeholder="Nom" required><br><br>
             <input type="text" name="prenomeleve" placeholder="Prénom" required><br><br>
             <input type="text" name="loginEleve" placeholder="Login" required><br><br>
