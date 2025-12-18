@@ -31,10 +31,8 @@
             } 
             ?>
 
+            <a href="index.php?uc=deconnexion">Déconnexion</a>
             
-            <form action="index.php?uc=deconnexion" method="post">
-                <input type="submit" value="Déconnexion">
-            </form>
         </header>
         
         <script>
